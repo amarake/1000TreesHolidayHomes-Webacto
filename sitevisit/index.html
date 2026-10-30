@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Site Visit | 1000 Trees Dapoli</title>
+  <link rel="icon" href="../assets/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Plus Jakarta Sans"', "sans-serif"] },
+          colors: { brand: { DEFAULT: "#03623f", dark: "#024a30" } },
+        },
+      },
+    };
+  </script>
+  <style>
+    input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); opacity: .7; cursor: pointer; }
+    select option { background: #1f1f1f; color: #fff; }
+  </style>
+</head>
+<body class="font-sans min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-fixed"
+  style="background-image: url('../assets/images/background.webp');">
+
+  <!-- dark blurred overlay -->
+  <div class="fixed inset-0 bg-black/50 backdrop-blur-md"></div>
+
+  <div class="relative w-full max-w-md rounded-[2rem] border border-white/15 bg-neutral-900/60 backdrop-blur-2xl shadow-2xl shadow-black/50 px-7 py-9 sm:px-9">
+    <h1 class="text-3xl font-bold text-white tracking-tight">Book a Site Visit</h1>
+    <p class="mt-2 text-sm text-white/60">NA Plots from ₹21 Lakh · Prices rise after Diwali</p>
+
+    <form id="siteVisitForm" class="mt-6 space-y-4" novalidate>
+      <input type="text" id="name" name="name" required minlength="2" autocomplete="name"
+        placeholder="Full Name *"
+        class="w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-white placeholder-white/50 outline-none transition focus:border-white/40 focus:bg-white/10" />
+
+      <div class="flex rounded-2xl border border-white/15 bg-white/5 transition focus-within:border-white/40 focus-within:bg-white/10">
+        <span class="flex items-center gap-1.5 border-r border-white/15 px-4 text-sm font-semibold text-white select-none">
+          <span class="text-[10px] font-extrabold tracking-wider">IN</span>+91
+        </span>
+        <input type="tel" id="phone" name="phone" required inputmode="numeric" maxlength="10" pattern="[6-9][0-9]{9}"
+          autocomplete="tel-national" placeholder="Mobile Number (10 digits) *"
+          class="w-full bg-transparent px-4 py-3.5 text-white placeholder-white/50 outline-none" />
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label for="visitDate" class="mb-1.5 block pl-1 text-xs font-medium text-white/60">Site Visit Date *</label>
+          <input type="date" id="visitDate" name="visitDate" required
+            class="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3.5 text-white outline-none transition [color-scheme:dark] focus:border-white/40 focus:bg-white/10" />
+        </div>
+        <div>
+          <label for="visitTime" class="mb-1.5 block pl-1 text-xs font-medium text-white/60">Site Visit Time *</label>
+          <select id="visitTime" name="visitTime" required
+            class="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3.5 text-white outline-none transition focus:border-white/40 focus:bg-white/10">
+            <option value="">Select time</option>
+            <option>10:00 AM</option>
+            <option>11:00 AM</option>
+            <option>12:00 PM</option>
+            <option>01:00 PM</option>
+            <option>02:00 PM</option>
+            <option>03:00 PM</option>
+            <option>04:00 PM</option>
+            <option>05:00 PM</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="formError" class="hidden rounded-xl border border-red-400/30 bg-red-500/10 px-4 py-2 text-sm text-red-300"></p>
+
+      <button type="submit" id="submitBtn"
+        class="flex w-full items-center justify-center gap-2 rounded-full bg-brand py-4 font-bold text-white shadow-lg shadow-brand/30 transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60">
+        <svg id="spinner" class="hidden h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+        </svg>
+        <span id="btnText">Book Site Visit</span>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    // ============ CONFIG ============
+    // Apna webhook URL yaha paste karo (Zapier / Make / n8n / Pabbly / Google Apps Script etc.)
+    const WEBHOOK_URL = "https://your-webhook-url-here";
+
+    // Success ke baad kis page pe redirect karna hai
+    const THANK_YOU_URL = "thank-you.html";
+
+    // "json"  -> application/json body bhejega
+    // "form"  -> application/x-www-form-urlencoded (agar webhook pe CORS error aaye to ye use karo)
+    const SEND_AS = "json";
+    // ================================
+
+    const form = document.getElementById("siteVisitForm");
+    const phoneInput = document.getElementById("phone");
+    const submitBtn = document.getElementById("submitBtn");
+    const spinner = document.getElementById("spinner");
+    const btnText = document.getElementById("btnText");
+    const formError = document.getElementById("formError");
+
+    // Past dates block karo
+    const today = new Date();
+    today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
+    document.getElementById("visitDate").min = today.toISOString().split("T")[0];
+
+    // Phone me sirf digits
+    phoneInput.addEventListener("input", () => {
+      phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
+    });
+
+    function showError(msg) {
+      formError.textContent = msg;
+      formError.classList.remove("hidden");
+    }
+
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      spinner.classList.toggle("hidden", !loading);
+      btnText.textContent = loading ? "Submitting..." : "Book Site Visit";
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      formError.classList.add("hidden");
+
+      if (!form.checkValidity()) {
+        const firstInvalid = form.querySelector(":invalid");
+        firstInvalid.focus();
+        showError(
+          firstInvalid === phoneInput
+            ? "Please enter a valid 10-digit mobile number."
+            : "Please fill all required fields."
+        );
+        return;
+      }
+
+      if (!WEBHOOK_URL || WEBHOOK_URL.includes("your-webhook-url-here")) {
+        showError("Webhook URL is not configured. Set WEBHOOK_URL in index.html.");
+        return;
+      }
+
+      const data = {
+        name: form.name.value.trim(),
+        countryCode: "+91",
+        phone: phoneInput.value,
+        fullPhone: "+91" + phoneInput.value,
+        visitDate: form.visitDate.value,
+        visitTime: form.visitTime.value,
+        submittedAt: new Date().toISOString(),
+        pageUrl: window.location.href,
+      };
+
+      const options =
+        SEND_AS === "form"
+          ? {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(data).toString(),
+            }
+          : {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            };
+
+      setLoading(true);
+      try {
+        const res = await fetch(WEBHOOK_URL, options);
+        if (!res.ok) throw new Error("Server responded with " + res.status);
+
+        sessionStorage.setItem("siteVisitName", data.name);
+        window.location.href = THANK_YOU_URL;
+      } catch (err) {
+        console.error(err);
+        showError("Something went wrong. Please try again.");
+        setLoading(false);
+      }
+    });
+  </script>
+</body>
+</html>
