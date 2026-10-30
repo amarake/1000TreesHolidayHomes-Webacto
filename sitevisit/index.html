@@ -48,6 +48,22 @@
           class="w-full bg-transparent px-4 py-3.5 text-white placeholder-white/50 outline-none" />
       </div>
 
+      <select id="interest" name="interest" required
+        class="w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-white outline-none transition focus:border-white/40 focus:bg-white/10">
+        <option value="">Primary Interest *</option>
+        <option>Plot</option>
+        <option>Investment</option>
+        <option>Bungalow</option>
+      </select>
+
+      <select id="budget" name="budget" required
+        class="w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-white outline-none transition focus:border-white/40 focus:bg-white/10">
+        <option value="">Approximate Budget Range *</option>
+        <option>20 Lakhs - 30 Lakhs</option>
+        <option>30 Lakhs - 50 Lakhs</option>
+        <option>50 Lakhs+</option>
+      </select>
+
       <div class="grid grid-cols-2 gap-3">
         <div>
           <label for="visitDate" class="mb-1.5 block pl-1 text-xs font-medium text-white/60">Site Visit Date *</label>
@@ -87,7 +103,7 @@
   <script>
     // ============ CONFIG ============
     // Apna webhook URL yaha paste karo (Zapier / Make / n8n / Pabbly / Google Apps Script etc.)
-    const WEBHOOK_URL = "https://your-webhook-url-here";
+    const WEBHOOK_URL = "https://wabuddy.in/api/v2/webhook/flows/71d4002d-1452-4d21-9547-749a0c4b4477";
 
     // Success ke baad kis page pe redirect karna hai
     const THANK_YOU_URL = "thank-you.html";
@@ -150,6 +166,8 @@
         countryCode: "+91",
         phone: phoneInput.value,
         fullPhone: "+91" + phoneInput.value,
+        interest: form.interest.value,
+        budget: form.budget.value,
         visitDate: form.visitDate.value,
         visitTime: form.visitTime.value,
         submittedAt: new Date().toISOString(),
