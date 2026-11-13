@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
-  <meta name="facebook-domain-verification" content="z374jugaqmue3z1b8il0dp5jpkz536" />
+
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -203,6 +203,8 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
     @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
     .floaty { animation: floaty 5s ease-in-out infinite; }
   </style>
+
+  <script src="./script.js"></script>
 </head>
 
 <body class="font-body text-forest bg-cream antialiased overflow-x-hidden">
@@ -228,7 +230,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
       <div class="flex items-center gap-3">
        
         <button data-open-modal class="hidden sm:inline-flex bg-terra hover:bg-terralight text-white text-sm font-semibold rounded-full px-5 py-3.5 transition shadow-lg btn-shake">
-          Book a Site Visit
+          Let's meet for a coffee
         </button>
         <button id="menuBtn" class="lg:hidden glass rounded-full p-2.5 text-white" aria-label="Menu">
           <svg id="menuIconOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
@@ -250,16 +252,16 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
         <li><a href="#connectivity" class="mobile-link block py-2.5 px-3 rounded-xl hover:bg-white/10">Location</a></li>
         <li><a href="#faq" class="mobile-link block py-2.5 px-3 rounded-xl hover:bg-white/10">FAQ</a></li>
       </ul>
-      <button data-open-modal class="mobile-link mt-4 w-full bg-terra text-white font-semibold rounded-full px-5 py-3">Book a Site Visit</button>
+      <button data-open-modal class="mobile-link mt-4 w-full bg-terra text-white font-semibold rounded-full px-5 py-3">Let's meet for a coffee</button>
     </div>
   </header>
 
   <!-- ================= HERO ================= -->
   <section id="home" class="relative min-h-screen flex items-center">
-    <div class="absolute inset-0" data-open-modal>
-      <picture  class="w-full h-full">
-        <source srcset="assets/images/mm1.png" media="(max-width: 767px)" />
-        <img src="assets/images/dd1.png" alt="1000 Trees Holiday Homes, Dapoli"  class="w-full h-full object-cover" />
+    <div class="absolute inset-0 overflow-hidden" data-open-modal>
+      <picture class="absolute inset-0 w-full h-full">
+        <source media="(max-width: 767px)" srcset="./assets/images/dd2.png" />
+        <img src="./assets/images/dd1.png" alt="1000 Trees Holiday Homes, Dapoli" class="block w-full h-full object-cover object-center" />
       </picture>
       <div class="absolute inset-0 "></div>
     </div>
@@ -300,7 +302,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
         </div>
   <div class="reveal flex flex-wrap gap-4 mt-8" style="transition-delay:.4s">
           <button data-open-modal class="bg-terra hover:bg-terralight text-white font-bold rounded-full px-8 py-4 text-base sm:text-lg shadow-xl shadow-terra/40 transition btn-shake">
-            Book a Site Visit Today!
+           Let's meet for a coffee
           </button>
           <button data-open-modal class="glass hover:bg-white/20 text-white font-semibold rounded-full px-8 py-4 text-base sm:text-lg transition">
             Get Plot Pricing
@@ -311,41 +313,70 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
 
   -->
   
-
-
-
-
-
-    <!-- Stats strip -->
-    <div class="absolute bottom-0 inset-x-0 z-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
-        <div class="glass-dark rounded-3xl grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10 overflow-hidden">
-          <div class="p-5 sm:p-6 text-center">
-            <p class="font-display text-2xl sm:text-2xl font-bold text-white"><span class="counter" data-target="74">0</span></p>
-            <p class="text-white/70 text-[11px] sm:text-[12px] mt-1 uppercase tracking-wider">NA Plots</p>
-          </div>
-          <div class="p-5 sm:p-6 text-center">
-            <p class="font-display text-2xl sm:text-2xl font-bold text-white"><span class="counter" data-target="1000">0</span>+</p>
-            <p class="text-white/70 text-[11px] sm:text-[12px] mt-1 uppercase tracking-wider">Trees Planted</p>
-          </div>
-          <div class="p-5 sm:p-6 text-center border-t border-white/10 md:border-t-0">
-            <p class="font-display text-2xl sm:text-2xl font-bold text-white"><span class="counter" data-target="7">0</span> Lakh L</p>
-            <p class="text-white/70 text-[11px] sm:text-[12px] mt-1 uppercase tracking-wider">Farm Ponds</p>
-          </div>
-          <div class="p-5 sm:p-6 text-center border-t border-white/10 md:border-t-0">
-            <p class="font-display text-2xl sm:text-2xl font-bold text-white"><span class="counter" data-target="9">0</span> km</p>
-            <p class="text-white/70 text-[11px] sm:text-[12px] mt-1 uppercase tracking-wider">To the Beach</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
+
+<!-- Stats Strip -->
+<div class="absolute bottom-[-10px] inset-x-0 z-20">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 pb-3 sm:pb-6">
+
+    <div class="glass-dark rounded-2xl sm:rounded-3xl
+                grid grid-cols-2 md:grid-cols-4
+                divide-x divide-y md:divide-y-0
+                divide-white/10 overflow-hidden">
+
+      <!-- NA Plots -->
+      <div class="p-4 sm:p-6 text-center">
+        <p class="font-display text-xl sm:text-2xl font-bold text-white">
+          <span class="counter" data-target="74">0</span>
+        </p>
+        <p class="text-white/70 text-[10px] sm:text-xs mt-1 uppercase tracking-wider">
+          NA Plots
+        </p>
+      </div>
+
+      <!-- Trees Planted -->
+      <div class="p-4 sm:p-6 text-center">
+        <p class="font-display text-xl sm:text-2xl font-bold text-white">
+          <span class="counter" data-target="1000">0</span>+
+        </p>
+        <p class="text-white/70 text-[10px] sm:text-xs mt-1 uppercase tracking-wider">
+          Trees Planted
+        </p>
+      </div>
+
+      <!-- Farm Ponds -->
+      <div class="p-4 sm:p-6 text-center">
+        <p class="font-display text-xl sm:text-2xl font-bold text-white">
+          <span class="counter" data-target="700000">0</span>
+          <span class="text-base sm:text-xl">Litres</span>
+        </p>
+        <p class="text-white/70 text-[10px] sm:text-xs mt-1 uppercase tracking-wider">
+          Farm Ponds
+        </p>
+      </div>
+
+      <!-- Beach -->
+      <div class="p-4 sm:p-6 text-center">
+        <p class="font-display text-xl sm:text-2xl font-bold text-white">
+          <span class="counter" data-target="9">0</span> km
+        </p>
+        <p class="text-white/70 text-[10px] sm:text-xs mt-1 uppercase tracking-wider">
+          To the Beach
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
   <!-- ================= OFFER MARQUEE ================= -->
   <div class="bg-terra text-white py-3 overflow-hidden">
     <div class="marquee-track flex whitespace-nowrap gap-10 font-semibold text-sm uppercase tracking-widest w-max">
-      <span>✦ Prices rise after Diwali</span><span>✦ NA Plots from ₹21 Lakh</span><span>✦ Sanctioned NA Plan</span><span>✦ Individual 7/12 Extract</span><span>✦ Bank Loan Available</span><span>✦ Book a Site Visit Today</span>
-      <span>✦ Prices rise after Diwali</span><span>✦ NA Plots from ₹21 Lakh</span><span>✦ Sanctioned NA Plan</span><span>✦ Individual 7/12 Extract</span><span>✦ Bank Loan Available</span><span>✦ Book a Site Visit Today</span>
+      <span>✦ Price rise after 31st Dec 2026</span><span>✦ NA Plots from ₹21 Lakh</span><span>✦ Sanctioned NA Plan</span><span>✦ Individual 7/12 Extract</span><span>✦ Bank Loan Available</span><span>✦ Let's meet for a coffee</span>
+      <span>✦ Price rise after 31st Dec 2026</span><span>✦ NA Plots from ₹21 Lakh</span><span>✦ Sanctioned NA Plan</span><span>✦ Individual 7/12 Extract</span><span>✦ Bank Loan Available</span><span>✦ Let's meet for a coffee</span>
     </div>
   </div>
 
@@ -364,9 +395,38 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
       </div>
 
       <!-- Images -->
-      <div class="reveal relative">
+
+            <div class="reveal relative">
       <img src="assets/images/Abouttheproject.webp" class="rounded-2xl">
 </div>
+  
+<!-- Reel Style Video -->
+<!-- <div class="reveal relative flex justify-center">
+
+  <div class="relative w-full max-w-[420px]
+              aspect-[9/16] rounded-3xl
+              overflow-hidden shadow-2xl
+              border border-forest/10 bg-forest">
+
+    <video
+      class="w-full h-full object-cover"
+      controls
+      playsinline
+      preload="metadata"
+      poster="assets/images/reel-thumbnail.jpg">
+
+      <source
+        src="assets/videos/property-reel.mp4"
+        type="video/mp4">
+
+      Your browser does not support video playback.
+
+    </video>
+
+  </div>
+
+</div> -->
+
 
       <!-- Content -->
       <div>
@@ -406,7 +466,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
         </div>
 
         <button data-open-modal class="reveal mt-9 bg-forest hover:bg-moss text-white font-bold rounded-full px-8 py-4 transition shadow-xl shadow-forest/30 btn-shake w-full sm:w-auto" style="transition-delay:.5s">
-          Book a Site Visit
+          Let's meet for a coffee
         </button>
       </div>
     </div>
@@ -965,7 +1025,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
           <li class="flex gap-3"><svg class="w-5 h-5 shrink-0 text-white mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Water connection to every plot</li>
         </ul>
 
-        <button data-open-modal class="reveal mt-9 w-full sm:w-auto bg-white text-forest hover:bg-moss hover:text-white font-bold rounded-full px-8 py-4 transition btn-shake" style="transition-delay:.3s">Book a Site Visit</button>
+        <button data-open-modal class="reveal mt-9 w-full sm:w-auto bg-white text-forest hover:bg-moss hover:text-white font-bold rounded-full px-8 py-4 transition btn-shake" style="transition-delay:.3s">Let's meet for a coffee</button>
       </div>
 
       <!-- Slider -->
@@ -1070,7 +1130,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
           <li class="flex gap-3"><svg class="w-5 h-5 shrink-0 text-moss mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Onsite team looks after your plot and plantation</li>
         </ul>
 
-        <button data-open-modal class="reveal mt-9 w-full sm:w-auto bg-forest hover:bg-moss text-white font-bold rounded-full px-8 py-4 transition shadow-xl shadow-forest/30 btn-shake" style="transition-delay:.3s">Book a Site Visit</button>
+        <button data-open-modal class="reveal mt-9 w-full sm:w-auto bg-forest hover:bg-moss text-white font-bold rounded-full px-8 py-4 transition shadow-xl shadow-forest/30 btn-shake" style="transition-delay:.3s">Let's meet for a coffee</button>
       </div>
     </div>
   </section>
@@ -1270,7 +1330,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
   </section>
 
   <!-- ================= PROJECT LAYOUT ================= -->
-  <section id="layout" class="relative py-20 sm:py-28 bg-cream">
+  <!-- <section id="layout" class="relative py-20 sm:py-28 bg-cream">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-3-2xl mx-auto">
         <p class="reveal section-label text-terra font-bold text-xs uppercase">Project Layout</p>
@@ -1291,7 +1351,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
         <button data-open-modal class="reveal bg-terra hover:bg-terralight text-white font-bold rounded-full px-8 py-4 transition shadow-xl btn-shake">Download Brochure</button>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
   <!-- ================= WHY INVEST ================= -->
@@ -1336,7 +1396,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
 
 
        <div class="text-center mt-10">
-        <button data-open-modal class="reveal bg-terra hover:bg-terralight text-white font-bold rounded-full px-8 py-4 transition shadow-xl btn-shake">Book a Site Visit Today</button>
+        <button data-open-modal class="reveal bg-terra hover:bg-terralight text-white font-bold rounded-full px-8 py-4 transition shadow-xl btn-shake">Let's meet for a coffee</button>
       </div>
 
 
@@ -1430,13 +1490,191 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
       </div>
 
      <button data-open-modal class="bg-terra mt-6 mx-auto block hover:bg-terralight text-white font-bold rounded-full px-8 py-4 transition shadow-xl shadow-terra/30 btn-shake">
-  Book a Site Visit
+ Let's meet for a coffee
 </button>
 
     </div>
 
     
   </section>
+
+  
+
+
+
+
+
+<!-- ================= VIDEO TESTIMONIALS ================= -->
+<section id="video-testimonials"
+  class="relative py-16 sm:py-20 lg:py-24 bg-sand overflow-hidden">
+
+  <!-- Decorative Background -->
+  <div class="absolute -top-32 -right-32 w-96 h-96
+              rounded-full bg-moss/10 blur-3xl pointer-events-none">
+  </div>
+
+  <div class="absolute -bottom-32 -left-32 w-96 h-96
+              rounded-full bg-terra/10 blur-3xl pointer-events-none">
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section Heading -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+
+      <p class="section-label text-terra font-bold text-xs
+                uppercase tracking-[3px]">
+        <span class="inline-block mr-2">▶</span>
+        Video Testimonials
+      </p>
+
+      <h2 class="reveal font-display text-3xl sm:text-4xl
+                 lg:text-5xl font-bold mt-4 text-forest leading-tight">
+        Real Stories.
+        <span class="text-moss">Real Experiences.</span>
+      </h2>
+
+      <p class="reveal text-forest/65 mt-4 text-sm sm:text-base
+                leading-relaxed">
+        Discover what makes owning a piece of paradise in Dapoli
+        a truly special experience. Watch real experiences from
+        our happy plot owners.
+      </p>
+
+    </div>
+
+    <!-- Centered Reel Video -->
+    <div class="flex justify-center items-center">
+
+      <div class="reveal w-full max-w-[240px] sm:max-w-[280px]
+                  lg:max-w-[300px]">
+
+        <!-- Video Card -->
+        <div class="relative bg-white p-2
+                    rounded-[25px] sm:rounded-[30px]
+                    shadow-xl shadow-forest/15
+                    border border-forest/10
+                    transition duration-500
+                    hover:shadow-2xl">
+
+          <!-- Portrait Video Player 9:16 -->
+          <div class="relative w-full aspect-[9/16]
+                      rounded-[20px] overflow-hidden bg-forest">
+
+            <video
+              class="absolute inset-0 w-full h-full object-cover"
+              controls
+              playsinline
+              preload="metadata">
+
+              <source
+                src="./assets/images/videos/instagram_reel.mp4"
+                type="video/mp4">
+
+              Your browser does not support HTML video.
+
+            </video>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Video Caption -->
+    <div class="text-center mt-7 sm:mt-8">
+
+      <h3 class="font-display text-lg sm:text-xl
+                 font-bold text-forest">
+        A Glimpse Into Life at 1000 Trees
+      </h3>
+
+      <p class="text-forest/65 text-sm sm:text-base mt-2">
+        Experience the beauty of nature and peaceful living.
+      </p>
+
+      <!-- Owner Experience Badge -->
+      <div class="inline-flex items-center gap-2 mt-4
+                  px-5 py-2.5 rounded-full bg-moss/10
+                  text-moss font-semibold text-xs sm:text-sm">
+
+        <span class="w-2 h-2 rounded-full bg-moss"></span>
+        Owner Experiences
+
+      </div>
+
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center mt-8 sm:mt-10">
+
+      <button data-open-modal
+        class="bg-terra hover:bg-terralight
+               text-white font-bold rounded-full
+               px-7 py-3.5 sm:px-8 sm:py-4
+               text-sm sm:text-base
+               transition shadow-xl
+               shadow-terra/30 btn-shake">
+
+        Let's meet for a coffee
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- ================= END VIDEO TESTIMONIALS ================= -->
+
+
+
+
+
+
+    <!-- Bottom CTA -->
+    <!-- <div class="text-center mt-14 sm:mt-16">
+
+      <p class="text-forest/65 text-sm sm:text-base mb-6">
+
+        Ready to create your own story at 1000 Trees?
+
+      </p> -->
+
+      <!-- <button
+        data-open-modal
+        class="inline-flex items-center justify-center
+               gap-3 bg-terra hover:bg-terralight
+               text-white font-bold
+               rounded-full px-8 sm:px-10 py-4
+               transition duration-300
+               shadow-xl shadow-terra/20
+               hover:-translate-y-1 btn-shake">
+
+
+        <svg class="w-5 h-5" fill="none"
+             stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+
+          <path stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 12h14m-7-7 7 7-7 7"/>
+
+        </svg>
+
+      </button> -->
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+  
 
 
 
@@ -1585,8 +1823,8 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
         <!-- Enquiry form -->
         <div>
           <div id="footerFormWrap" class="glass-dark rounded-[2rem] p-7 sm:p-8">
-            <h3 class="font-display text-2xl font-bold text-white">Book a Site Visit</h3>
-            <p class="text-white/70 text-sm mt-2">NA Plots from ₹21 Lakh · Prices rise after Diwali</p>
+            <h3 class="font-display text-2xl font-bold text-white">Let's meet for a coffee</h3>
+            <p class="text-white/70 text-sm mt-2">NA Plots from ₹21 Lakh · Price rise after 31st Dec 2026</p>
             <form id="footerForm" class="mt-6 space-y-4">
               <input type="text" name="name" required autocomplete="name" placeholder="Full Name"
                      class="w-full glass rounded-2xl px-5 py-3.5 text-white placeholder-white/60 focus:bg-white/15 transition" />
@@ -1599,11 +1837,18 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
                        placeholder="Mobile Number (10 digits)"
                        class="js-phone w-full bg-transparent px-4 py-3.5 text-white placeholder-white/60" />
               </div>
+              <select name="cityOfResidence" required
+                      class="w-full glass rounded-2xl px-5 py-3.5 text-white focus:bg-white/15 transition [&>option]:text-forest">
+                <option value="" disabled selected>City of Residence</option>
+                <option>Mumbai / Thane / Kalyan</option>
+                <option>Pune / Pimpri Chinchwad</option>
+                <option>Others</option>
+              </select>
               <select name="interested" required
                       class="w-full glass rounded-2xl px-5 py-3.5 text-white focus:bg-white/15 transition [&>option]:text-forest">
                 <option value="" disabled selected>I am interested in…</option>
-                <option>NA Plot</option>
-                <option>Bungalow</option>
+                <option>Holiday / Retirement Home</option>
+                <option>NA Plot Investment</option>
                 <option>Plot + Bungalow</option>
               </select>
               <button type="submit" class="w-full bg-terra hover:bg-terralight text-white font-bold rounded-full py-4 transition shadow-lg shadow-black/25 btn-shake">
@@ -1624,7 +1869,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
         </div>
       </div>
       <div class="border-t border-white/10 mt-12 pt-6 text-center text-xs text-white/50">
-        <p>© 2026 1000 Trees Holiday Homes. All rights reserved. </p>
+        <p>© 2026 - 1000 Trees Holiday Homes. All rights reserved. </p>
       </div>
     </div>
   </footer>
@@ -1666,9 +1911,17 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
   <div class="fixed bottom-0 inset-x-0 z-50 md:hidden">
     <div class="px-4 pt-3 flex gap-3" style="padding-bottom:max(0.85rem, env(safe-area-inset-bottom));">
       
-      <button data-open-modal class="flex-[1.5] bg-terra text-white font-bold rounded-full py-3.5 text-sm shadow-lg btn-shake">
-        Book a Site Visit
-      </button>
+      <!-- <button data-open-modal class="flex-[1.5] bg-terra text-white font-bold rounded-full py-3.5 text-sm shadow-lg btn-shake">
+      Let's meet for a coffee
+      </button> -->
+
+      <button
+  data-open-modal
+  class="mobile-link mt-4 w-full bg-terra hover:bg-terralight
+         text-white font-semibold rounded-none 
+         px-5 py-3 transition">
+Let's meet for a coffee
+</button>
     </div>
   </div>
   <!-- Spacer so footer content is not hidden behind the fixed bar on mobile -->
@@ -1683,8 +1936,8 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
       </button>
 
       <div id="modalForm">
-        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">Book a Site Visit</h3>
-        <p class="text-white/70 text-sm mt-2">NA Plots from ₹21 Lakh · Prices rise after Diwali</p>
+        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">Let's meet for a coffee</h3>
+        <p class="text-white/70 text-sm mt-2">NA Plots from ₹21 Lakh · Price rise after 31st Dec 2026</p>
         <form id="leadForm" class="mt-6 space-y-4">
           <input type="text" name="name" required autocomplete="name" placeholder="Full Name"
                  class="w-full glass rounded-2xl px-5 py-3.5 text-white placeholder-white/60 focus:bg-white/15 transition" />
@@ -1697,11 +1950,18 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
                    placeholder="Mobile Number (10 digits)"
                    class="js-phone w-full bg-transparent px-4 py-3.5 text-white placeholder-white/60" />
           </div>
+          <select name="cityOfResidence" required
+                  class="w-full glass rounded-2xl px-5 py-3.5 text-white focus:bg-white/15 transition [&>option]:text-forest">
+            <option value="" disabled selected>City of Residence</option>
+            <option>Mumbai / Thane / Kalyan</option>
+            <option>Pune / Pimpri Chinchwad</option>
+            <option>Others</option>
+          </select>
           <select name="interested" required
                   class="w-full glass rounded-2xl px-5 py-3.5 text-white focus:bg-white/15 transition [&>option]:text-forest">
             <option value="" disabled selected>I am interested in…</option>
-            <option>NA Plot</option>
-            <option>Bungalow</option>
+            <option>Holiday / Retirement Home</option>
+            <option>NA Plot Investment</option>
             <option>Plot + Bungalow</option>
           </select>
           <button type="submit" class="w-full bg-terra hover:bg-terralight text-white font-bold rounded-full py-4 transition shadow-lg shadow-black/25">
@@ -1804,13 +2064,14 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
     // ---------- CRM (Recally) lead capture ----------
     const CRM_API_TOKEN = '9bc44d1b-6d82-46c0-b714-22430dfe35fd';
 
-    function sendLead({ name = '', email = '', phone = '', interested = '' }) {
+    function sendLead({ name = '', email = '', phone = '', cityOfResidence = '', interested = '' }) {
       let message = 'Lead from 1000 Trees Holiday Homes landing page';
       if (interested) message = 'Interested in: ' + interested + ' | ' + message;
+      if (cityOfResidence) message = 'City of Residence: ' + cityOfResidence + ' | ' + message;
 
       const params = new URLSearchParams({
         'api-token': CRM_API_TOKEN,
-        name, email, mobile: phone, message,
+        name, email, mobile: phone, city: cityOfResidence, cityOfResidence, message,
         // Interest sent as dedicated fields too, so the CRM can map it to its own column
         interested, requirement: interested, remarks: interested, comment: interested,
         campaign: '1000 trees Landing Page', roundrobin: 'true', group: 'landing'
@@ -1836,6 +2097,7 @@ src="https://www.facebook.com/tr?id=1879925623449779&ev=PageView&noscript=1"
           name: (fd.get('name') || '').trim(),
           email: (fd.get('email') || '').trim(),
           phone: (fd.get('phone') || '').trim(),
+          cityOfResidence: (fd.get('cityOfResidence') || '').trim(),
           interested: (fd.get('interested') || '').trim()
         }).finally(() => { window.location.href = 'thank-you.html'; });
       });
