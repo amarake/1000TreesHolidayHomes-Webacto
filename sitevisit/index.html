@@ -48,6 +48,18 @@
           class="w-full bg-transparent px-4 py-3.5 text-white placeholder-white/50 outline-none" />
       </div>
 
+      <select id="city" name="city" required
+        class="w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-white outline-none transition focus:border-white/40 focus:bg-white/10">
+        <option value="">Select Your City *</option>
+        <option>Mumbai</option>
+        <option>Pune</option>
+        <option>Other</option>
+      </select>
+
+      <input type="text" id="otherCity" name="otherCity" minlength="2" autocomplete="address-level2"
+        placeholder="Enter your city *"
+        class="hidden w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-white placeholder-white/50 outline-none transition focus:border-white/40 focus:bg-white/10" />
+
       <select id="interest" name="interest" required
         class="w-full rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-white outline-none transition focus:border-white/40 focus:bg-white/10">
         <option value="">Primary Interest *</option>
@@ -130,6 +142,17 @@
       phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, 10);
     });
 
+    // "Other" select kela tar city input dakhva
+    const citySelect = document.getElementById("city");
+    const otherCityInput = document.getElementById("otherCity");
+    citySelect.addEventListener("change", () => {
+      const isOther = citySelect.value === "Other";
+      otherCityInput.classList.toggle("hidden", !isOther);
+      otherCityInput.required = isOther;
+      if (isOther) otherCityInput.focus();
+      else otherCityInput.value = "";
+    });
+
     function showError(msg) {
       formError.textContent = msg;
       formError.classList.remove("hidden");
@@ -166,6 +189,7 @@
         countryCode: "+91",
         phone: phoneInput.value,
         fullPhone: "+91" + phoneInput.value,
+        city: citySelect.value === "Other" ? otherCityInput.value.trim() : citySelect.value,
         interest: form.interest.value,
         budget: form.budget.value,
         visitDate: form.visitDate.value,
