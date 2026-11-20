@@ -117,6 +117,12 @@
     // Apna webhook URL yaha paste karo (Zapier / Make / n8n / Pabbly / Google Apps Script etc.)
     const WEBHOOK_URL = "https://wabuddy.in/api/v2/webhook/flows/71d4002d-1452-4d21-9547-749a0c4b4477";
 
+    // CRM (Recally) - same token as the landing page (company 104)
+    const CRM_API_URL = "https://api.recally.co/";
+    const CRM_API_TOKEN = "9bc44d1b-6d82-46c0-b714-22430dfe35fd";
+    const CRM_CAMPAIGN = "1000 trees Site Visit";
+    const CRM_LEAD_STATUS = "Site Visit Requested"; // must match the status name in CRM exactly
+
     // Success ke baad kis page pe redirect karna hai
     const THANK_YOU_URL = "thank-you.html";
 
@@ -211,10 +217,41 @@
               body: JSON.stringify(data),
             };
 
+      // CRM (Recally) lead: status is set to "Site Visit Requested"
+      const crmParams = new URLSearchParams({
+        "api-token": CRM_API_TOKEN,
+        name: data.name,
+        email: "",
+        mobile: data.phone,
+        campaign: CRM_CAMPAIGN,
+        status: CRM_LEAD_STATUS,
+        // sent as extra params so CRM custom fields with these exact names get filled
+        city: data.city,
+        interest: data.interest,
+        budget: data.budget,
+        visitDate: data.visitDate,
+        visitTime: data.visitTime,
+      });
+
       setLoading(true);
       try {
-        const res = await fetch(WEBHOOK_URL, options);
-        if (!res.ok) throw new Error("Server responded with " + res.status);
+        // CRM call (no-cors: response is opaque, a network failure still throws)
+        const crmReq = fetch(CRM_API_URL + "?" + crmParams.toString(), {
+          method: "POST",
+          mode: "no-cors",
+          keepalive: true,
+        });
+        // WABuddy webhook stays as before
+        const hookReq = fetch(WEBHOOK_URL, options).then((res) => {
+          if (!res.ok) throw new Error("Server responded with " + res.status);
+        });
+
+        const [crmRes, hookRes] = await Promise.allSettled([crmReq, hookReq]);
+        if (crmRes.status === "rejected" && hookRes.status === "rejected") {
+          throw crmRes.reason;
+        }
+        if (crmRes.status === "rejected") console.error("CRM lead failed", crmRes.reason);
+        if (hookRes.status === "rejected") console.error("Webhook failed", hookRes.reason);
 
         sessionStorage.setItem("siteVisitName", data.name);
         window.location.href = THANK_YOU_URL;
