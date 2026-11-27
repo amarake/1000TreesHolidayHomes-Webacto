@@ -233,14 +233,30 @@
         visitTime: data.visitTime,
       });
 
-      setLoading(true);
-      try {
-        // CRM call (no-cors: response is opaque, a network failure still throws)
-        const crmReq = fetch(CRM_API_URL + "?" + crmParams.toString(), {
+      // Existing lead update: campaign is not sent, so the original campaign (e.g. landing page) stays
+      const crmUpdateParams = new URLSearchParams(crmParams);
+      crmUpdateParams.delete("campaign");
+
+      // 1) PUT = update the latest lead with this mobile (status -> Site Visit Requested)
+      // 2) If no lead exists (404), POST = create a new lead
+      async function sendToCrm() {
+        try {
+          const res = await fetch(CRM_API_URL + "?" + crmUpdateParams.toString(), { method: "PUT" });
+          if (res.ok) return;
+          if (res.status !== 404) throw new Error("CRM update failed: " + res.status);
+        } catch (err) {
+          if (!(err instanceof TypeError)) throw err; // TypeError = network/CORS problem -> try POST
+        }
+        await fetch(CRM_API_URL + "?" + crmParams.toString(), {
           method: "POST",
           mode: "no-cors",
           keepalive: true,
         });
+      }
+
+      setLoading(true);
+      try {
+        const crmReq = sendToCrm();
         // WABuddy webhook stays as before
         const hookReq = fetch(WEBHOOK_URL, options).then((res) => {
           if (!res.ok) throw new Error("Server responded with " + res.status);
